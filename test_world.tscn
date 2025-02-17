@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://b32jjq1m0sbq0"]
+[gd_scene load_steps=4 format=3 uid="uid://b32jjq1m0sbq0"]
 
 [ext_resource type="PackedScene" uid="uid://cowdos8vrfhqo" path="res://rigid_jeep.tscn" id="1_31jf1"]
+[ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="1_47tiq"]
+[ext_resource type="PackedScene" uid="uid://cplk5wldxrrax" path="res://helicopter.tscn" id="2_imhek"]
 
 [node name="TestWorld" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1098.5, -318)
+scale = Vector2(36.5547, 17.6563)
+texture = ExtResource("1_47tiq")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-478, -475)
@@ -15,6 +22,9 @@ polygon = PackedVector2Array(-193.592, 280.592, -178.303, 617.625, 441.681, 625.
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(3369, 325, 3380, 597, 2731, 588, 2738, 367, 2797, 526, 3180, 535, 3245, 514, 3294, 474, 3318, 426)
+
+[node name="Helicopter" parent="." instance=ExtResource("2_imhek")]
+position = Vector2(31, 4)
 
 [node name="RigidJeep" parent="." instance=ExtResource("1_31jf1")]
 position = Vector2(-550, 204)

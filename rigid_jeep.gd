@@ -1,14 +1,15 @@
 extends RigidBody2D
 
 
-const SPEED := 1000
-const TURN_SPEED := 2000
+@export var speed := 1000
+@export var turn_speed := 2000
 
 @onready var traction_area: Area2D = $TractionArea
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	var input := Input.get_axis(&"left", &"right")
 	if traction_area.get_overlapping_bodies().size() > 0:
-		apply_force(transform.x * Input.get_axis("ui_left", "ui_right") * SPEED)
+		apply_force(transform.x * input * speed)
 	elif get_contact_count() <= 0:
-		apply_torque(Input.get_axis("ui_right", "ui_left") * TURN_SPEED)
+		apply_torque(input * turn_speed)

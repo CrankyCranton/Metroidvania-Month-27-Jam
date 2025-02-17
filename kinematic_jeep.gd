@@ -12,7 +12,7 @@ var throttle := 0
 
 func _physics_process(delta: float) -> void:
 	if get_slide_collision_count() > 0:
-		throttle = move_toward(throttle, Input.get_axis("ui_left", "ui_right") * SPEED, SPEED * delta)
+		throttle = move_toward(throttle, Input.get_axis(&"left", &"right") * SPEED, SPEED * delta)
 	gravity += get_gravity().y * GRAVITY_SCALE * delta
 	velocity = Vector2(0.0, gravity) + (transform.x * throttle)
 
