@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b32jjq1m0sbq0"]
+
+[ext_resource type="PackedScene" uid="uid://cowdos8vrfhqo" path="res://rigid_jeep.tscn" id="1_31jf1"]
+
+[node name="TestWorld" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-478, -475)
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(22, 188)
+rotation = -0.0021083
+polygon = PackedVector2Array(-193.592, 280.592, -178.303, 617.625, 441.681, 625.933, 566.865, 539.196, 674.696, 619.424, 1559.68, 627.29, 1613.73, 605.404, 1648.82, 563.477, 1717.82, 560.623, 1709.02, 466.604, 1726.05, 451.64, 1883.68, 626.973, 2174.68, 629.586, 2307.81, 564.867, 2502.81, 567.278, 2638.68, 627.565, 3265.68, 627.886, 3387.72, 611.144, 3489.86, 546.359, 3561.1, 428.509, 3595.38, 296.581, 3583.56, 211.556, 3536.75, 124.457, 3445.88, 61.2651, 3793.99, 9.9989, 3742.37, 775.892, -413.663, 788.13, -368.229, 108.224, -40.4701, 222.915)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(3369, 325, 3380, 597, 2731, 588, 2738, 367, 2797, 526, 3180, 535, 3245, 514, 3294, 474, 3318, 426)
+
+[node name="RigidJeep" parent="." instance=ExtResource("1_31jf1")]
+position = Vector2(-550, 204)
