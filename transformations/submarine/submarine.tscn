@@ -9,14 +9,15 @@ friction = 0.2
 radius = 6.0
 height = 32.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l641s"]
-size = Vector2(28, 48)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vd7s"]
+radius = 8.0
+height = 36.0
 
 [node name="Submarine" type="RigidBody2D"]
+collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_5xh0d")
 lock_rotation = true
 continuous_cd = 1
-linear_damp = 2.0
 script = ExtResource("1_hi161")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -30,4 +31,4 @@ monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
 rotation = -1.5708
-shape = SubResource("RectangleShape2D_l641s")
+shape = SubResource("CapsuleShape2D_3vd7s")

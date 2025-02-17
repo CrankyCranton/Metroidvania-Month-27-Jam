@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b32jjq1m0sbq0"]
+[gd_scene load_steps=7 format=3 uid="uid://b32jjq1m0sbq0"]
 
 [ext_resource type="PackedScene" uid="uid://cowdos8vrfhqo" path="res://transformations/jeep/rigid_jeep.tscn" id="1_31jf1"]
 [ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="1_47tiq"]
 [ext_resource type="PackedScene" uid="uid://cplk5wldxrrax" path="res://transformations/helicopter/helicopter.tscn" id="2_imhek"]
 [ext_resource type="PackedScene" uid="uid://cssxwbs7if5ac" path="res://transformations/submarine/submarine.tscn" id="4_vkx55"]
+[ext_resource type="Script" path="res://water.gd" id="5_mtbva"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie80j"]
 size = Vector2(1455, 562)
@@ -30,19 +31,19 @@ polygon = PackedVector2Array(3369, 325, 3380, 597, 2731, 588, 2738, 367, 2797, 5
 [node name="Submarine" parent="." instance=ExtResource("4_vkx55")]
 position = Vector2(2445, 553)
 
-[node name="RigidJeep" parent="." instance=ExtResource("1_31jf1")]
-position = Vector2(-550, 204)
-
-[node name="Camera2D" type="Camera2D" parent="RigidJeep"]
+[node name="Camera2D" type="Camera2D" parent="Submarine"]
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
 drag_vertical_enabled = true
 drag_left_margin = 0.3
-drag_top_margin = 0.5
+drag_top_margin = 0.4
 drag_right_margin = 0.3
-drag_bottom_margin = 0.5
+drag_bottom_margin = 0.4
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="RigidJeep" parent="." instance=ExtResource("1_31jf1")]
+position = Vector2(1938, 204)
 
 [node name="Helicopter" parent="." instance=ExtResource("2_imhek")]
 position = Vector2(31, 4)
@@ -50,11 +51,12 @@ position = Vector2(31, 4)
 [node name="Water" type="Area2D" parent="."]
 position = Vector2(2258, 266)
 collision_layer = 4
-collision_mask = 0
-monitoring = false
+collision_mask = 2
 gravity_space_override = 3
-gravity_point = true
-gravity = 0.0
+gravity = 64.0
+linear_damp_space_override = 3
+linear_damp = 2.0
+script = ExtResource("5_mtbva")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
 position = Vector2(595.5, 431)
