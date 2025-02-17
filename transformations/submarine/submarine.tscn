@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cssxwbs7if5ac"]
+
+[ext_resource type="Script" path="res://transformations/submarine/submarine.gd" id="1_hi161"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5xh0d"]
+friction = 0.2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qb4d"]
+radius = 6.0
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l641s"]
+size = Vector2(28, 48)
+
+[node name="Submarine" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_5xh0d")
+lock_rotation = true
+continuous_cd = 1
+linear_damp = 2.0
+script = ExtResource("1_hi161")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_4qb4d")
+
+[node name="WaterDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_l641s")

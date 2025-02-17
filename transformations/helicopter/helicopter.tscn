@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cplk5wldxrrax"]
 
-[ext_resource type="Script" path="res://helicopter.gd" id="1_2lag7"]
+[ext_resource type="Script" path="res://transformations/helicopter/helicopter.gd" id="1_2lag7"]
 [ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="2_ackmb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3mkbe"]
@@ -52,5 +52,3 @@ disabled = true
 unique_name_in_owner = true
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_ackmb")
-
-[node name="Camera2D" type="Camera2D" parent="."]

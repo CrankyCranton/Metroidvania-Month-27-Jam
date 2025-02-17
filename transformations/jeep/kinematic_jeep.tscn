@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://f45k7pgss7v5"]
 
-[ext_resource type="Script" path="res://kinematic_jeep.gd" id="1_dmwq7"]
+[ext_resource type="Script" path="res://transformations/jeep/kinematic_jeep.gd" id="1_dmwq7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqgn4"]
 radius = 8.0
