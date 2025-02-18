@@ -1,40 +1,44 @@
-[gd_scene load_steps=6 format=3 uid="uid://cowdos8vrfhqo"]
+[gd_scene load_steps=7 format=3 uid="uid://cowdos8vrfhqo"]
 
 [ext_resource type="Script" path="res://transformations/jeep/rigid_jeep.gd" id="1_b5bgb"]
-[ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="2_whf07"]
+[ext_resource type="PackedScene" uid="uid://jhmxejls61o4" path="res://transformations/base_vehicle.tscn" id="1_f740a"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_igoq4"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_badcv"]
 friction = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qoow2"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ty6pv"]
 radius = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xln8s"]
 radius = 5.0
 height = 16.0
 
-[node name="RigidJeep" type="RigidBody2D"]
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_igoq4")
+[sub_resource type="CircleShape2D" id="CircleShape2D_glav3"]
+radius = 5.0
+
+[node name="RigidJeep" node_paths=PackedStringArray("water_detector") instance=ExtResource("1_f740a")]
+physics_material_override = SubResource("PhysicsMaterial_badcv")
 center_of_mass_mode = 1
-continuous_cd = 1
-contact_monitor = true
-max_contacts_reported = 1
 angular_damp = 6.0
 script = ExtResource("1_b5bgb")
+turn_speed = 2000
+water_detector = NodePath("WaterDetector")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, -4)
-rotation = 1.57079
-shape = SubResource("CircleShape2D_qoow2")
+shape = SubResource("CircleShape2D_ty6pv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_whf07")
+[node name="TractionArea" type="Area2D" parent="." index="2"]
 
-[node name="TractionArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TractionArea" index="0"]
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_xln8s")
+
+[node name="WaterDetector" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_glav3")

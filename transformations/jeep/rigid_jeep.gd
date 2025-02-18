@@ -1,7 +1,6 @@
-extends RigidBody2D
+extends BaseVehicle
 
 
-@export var speed := 1000
 @export var turn_speed := 2000
 
 @onready var traction_area: Area2D = $TractionArea

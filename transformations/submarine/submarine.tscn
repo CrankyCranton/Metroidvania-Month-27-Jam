@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cssxwbs7if5ac"]
+[gd_scene load_steps=6 format=3 uid="uid://cssxwbs7if5ac"]
 
 [ext_resource type="Script" path="res://transformations/submarine/submarine.gd" id="1_hi161"]
+[ext_resource type="PackedScene" uid="uid://jhmxejls61o4" path="res://transformations/base_vehicle.tscn" id="1_o12d7"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5xh0d"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ci3p0"]
 friction = 0.2
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qb4d"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdy6h"]
 radius = 6.0
 height = 32.0
 
@@ -13,22 +14,23 @@ height = 32.0
 radius = 8.0
 height = 36.0
 
-[node name="Submarine" type="RigidBody2D"]
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_5xh0d")
+[node name="Submarine" node_paths=PackedStringArray("water_detector") instance=ExtResource("1_o12d7")]
+physics_material_override = SubResource("PhysicsMaterial_ci3p0")
 lock_rotation = true
-continuous_cd = 1
 script = ExtResource("1_hi161")
+speed = 150
+water_detector = NodePath("WaterDetector")
+water_damage = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -1.5708
-shape = SubResource("CapsuleShape2D_4qb4d")
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xdy6h")
 
-[node name="WaterDetector" type="Area2D" parent="."]
+[node name="WaterDetector" type="Area2D" parent="." index="2"]
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector" index="0"]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_3vd7s")

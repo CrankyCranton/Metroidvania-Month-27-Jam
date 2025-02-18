@@ -1,13 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cplk5wldxrrax"]
+[gd_scene load_steps=9 format=3 uid="uid://cplk5wldxrrax"]
 
 [ext_resource type="Script" path="res://transformations/helicopter/helicopter.gd" id="1_2lag7"]
-[ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="2_ackmb"]
+[ext_resource type="PackedScene" uid="uid://jhmxejls61o4" path="res://transformations/base_vehicle.tscn" id="1_ay28f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbbkm"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2n2v"]
+radius = 2.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3mkbe"]
 bounce = 0.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_untng"]
-radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6jnnx"]
 radius = 8.0
@@ -15,24 +18,25 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jycqr"]
 size = Vector2(16, 16)
 
-[node name="Helicopter" type="RigidBody2D"]
-collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_3mkbe")
+[sub_resource type="CircleShape2D" id="CircleShape2D_wdeea"]
+radius = 5.0
+
+[node name="Helicopter" instance=ExtResource("1_ay28f")]
+physics_material_override = SubResource("PhysicsMaterial_nbbkm")
 gravity_scale = 0.3
-continuous_cd = 1
 linear_damp = 1.5
 script = ExtResource("1_2lag7")
+speed = 4000
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_untng")
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_q2n2v")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="."]
+[node name="PinJoint2D" type="PinJoint2D" parent="." index="2"]
 node_a = NodePath("..")
-node_b = NodePath("Body")
+node_b = NodePath("../Body")
 motor_enabled = true
 
-[node name="Body" type="RigidBody2D" parent="PinJoint2D"]
-unique_name_in_owner = true
+[node name="Body" type="RigidBody2D" parent="." index="3"]
 position = Vector2(0, 10)
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_3mkbe")
@@ -41,14 +45,18 @@ center_of_mass = Vector2(0, 16)
 continuous_cd = 1
 angular_damp = 10.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PinJoint2D/Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" index="0"]
 shape = SubResource("CircleShape2D_6jnnx")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PinJoint2D/Body"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Body" index="1"]
 shape = SubResource("RectangleShape2D_jycqr")
 disabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="PinJoint2D/Body"]
-unique_name_in_owner = true
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ackmb")
+[node name="WaterDetector" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector" index="0"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_wdeea")

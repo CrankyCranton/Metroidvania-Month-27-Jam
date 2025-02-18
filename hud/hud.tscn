@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://vhb1s1vvkxte"]
+
+[ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="1_2qlco"]
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_t28uw"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_t28uw")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+value = 50.0
+texture_under = ExtResource("1_2qlco")
+texture_progress = ExtResource("1_2qlco")
+tint_progress = Color(1, 0, 0, 1)
