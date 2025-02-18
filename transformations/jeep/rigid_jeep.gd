@@ -12,4 +12,4 @@ func _physics_process(_delta: float) -> void:
 	if traction_area.get_overlapping_bodies().size() > 0:
 		apply_force(transform.x * input * speed)
 	elif get_contact_count() <= 0:
-		apply_torque(input * turn_speed)
+		apply_torque(-input * turn_speed)

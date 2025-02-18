@@ -920,7 +920,9 @@ func bake_collision() -> void:
 		generated_points = _generate_collision_points_precise()
 
 	var xform := _collision_polygon_node.get_global_transform().affine_inverse() * get_global_transform()
-	_collision_polygon_node.polygon = xform * generated_points
+	var polygon := xform * generated_points
+	polygon.remove_at(polygon.size() - 1)
+	_collision_polygon_node.polygon = polygon
 
 
 func cache_edges() -> void:

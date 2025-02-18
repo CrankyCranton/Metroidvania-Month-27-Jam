@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://s3nu2gmgjjr4"]
+
+[ext_resource type="Script" path="res://world/water/water.gd" id="1_jre4j"]
+
+[node name="Water" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+gravity_space_override = 3
+gravity = 64.0
+linear_damp_space_override = 3
+linear_damp = 2.0
+angular_damp_space_override = 3
+angular_damp = 2.0
+script = ExtResource("1_jre4j")
