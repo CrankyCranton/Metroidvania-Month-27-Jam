@@ -29,6 +29,7 @@ var health: int:
 			died.emit()
 
 @onready var water_damage_timer: Timer = $WaterDamageTimer
+@onready var spawn_point := global_position
 
 
 func _ready() -> void:
@@ -52,7 +53,8 @@ func connect_water_signals() -> void:
 
 
 func die() -> void:
-	pass
+	global_position = spawn_point
+	health = max_health
 
 
 func _on_water_damage_timer_timeout() -> void:
