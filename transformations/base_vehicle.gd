@@ -2,42 +2,16 @@ class_name BaseVehicle extends RigidBody2D
 
 
 #region Members
-#region Signals
-signal hurt
-signal healed
-signal health_changed(health: int)
-signal max_health_changed(max_health: int)
-signal died
-#endregion
-
 #region Export
 @export var speed := 1000
 @export var water_detector: Area2D
 @export var water_damage := 1
 #endregion
 
-#region Variables
 var level := 1
-var max_health: int:
-	set(value):
-		max_health = value
-		max_health_changed.emit(max_health)
-var health: int:
-	set(value):
-		if value < health:
-			hurt.emit()
-		elif value > health:
-			healed.emit()
-		health = value
-		health_changed.emit(health)
-		if health <= 0:
-			die()
-			died.emit()
-#endregion
 
 #region Onready
 @onready var water_damage_timer: Timer = $WaterDamageTimer
-@onready var spawn_point := global_position
 #endregion
 #endregion
 
@@ -45,7 +19,6 @@ var health: int:
 #region Functions
 #region Overrides
 func _ready() -> void:
-	init_health()
 	connect_water_signals()
 
 
@@ -54,27 +27,15 @@ func _physics_process(_delta: float) -> void:
 #endregion
 
 
-#region Custom
-func init_health() -> void:
-	max_health = 10
-	health = max_health
-
-
 func connect_water_signals() -> void:
 	if water_damage_timer:
 		water_detector.area_entered.connect(_on_water_detector_area_entered)
 		water_detector.area_exited.connect(_on_water_detector_area_exited)
 
 
-func die() -> void:
-	global_position = spawn_point
-	health = max_health
-#endregion
-
-
 #region Events
 func _on_water_damage_timer_timeout() -> void:
-	health -= water_damage
+	PlayerData.health -= water_damage
 
 
 func _on_water_detector_area_entered(_area: Area2D) -> void:
