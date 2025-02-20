@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cowdos8vrfhqo"]
 
-[ext_resource type="Script" path="res://transformations/jeep/rigid_jeep.gd" id="1_b5bgb"]
+[ext_resource type="Script" path="res://transformations/armored_car/armored_car.gd" id="1_b5bgb"]
 [ext_resource type="PackedScene" uid="uid://jhmxejls61o4" path="res://transformations/base_vehicle.tscn" id="1_f740a"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_badcv"]
