@@ -1,17 +1,23 @@
 class_name BaseVehicle extends RigidBody2D
 
 
+#region Members
+#region Signals
 signal hurt
 signal healed
 signal health_changed(health: int)
 signal max_health_changed(max_health: int)
 signal died
+#endregion
 
+#region Export
 @export var speed := 1000
 @export var water_detector: Area2D
 @export var water_damage := 1
+#endregion
 
-var transformations := {}
+#region Variables
+var level := 1
 var max_health: int:
 	set(value):
 		max_health = value
@@ -27,11 +33,17 @@ var health: int:
 		if health <= 0:
 			die()
 			died.emit()
+#endregion
 
+#region Onready
 @onready var water_damage_timer: Timer = $WaterDamageTimer
 @onready var spawn_point := global_position
+#endregion
+#endregion
 
 
+#region Functions
+#region Overrides
 func _ready() -> void:
 	init_health()
 	connect_water_signals()
@@ -39,8 +51,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	apply_force(Input.get_vector(&"left", &"right", &"up", &"down") * speed)
+#endregion
 
 
+#region Custom
 func init_health() -> void:
 	max_health = 10
 	health = max_health
@@ -55,8 +69,10 @@ func connect_water_signals() -> void:
 func die() -> void:
 	global_position = spawn_point
 	health = max_health
+#endregion
 
 
+#region Events
 func _on_water_damage_timer_timeout() -> void:
 	health -= water_damage
 
@@ -69,3 +85,5 @@ func _on_water_detector_area_entered(_area: Area2D) -> void:
 func _on_water_detector_area_exited(_area: Area2D) -> void:
 	if water_detector.get_overlapping_areas().size() <= 0:
 		water_damage_timer.stop()
+#endregion
+#endregion

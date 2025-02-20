@@ -1,9 +1,11 @@
 extends BaseVehicle
 
 
+#region Members
 @export var turn_speed := 2000
 
 @onready var traction_area: Area2D = $TractionArea
+#endregion
 
 
 func _physics_process(_delta: float) -> void:
