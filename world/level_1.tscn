@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://cgd41f57pe75e"]
+[gd_scene load_steps=85 format=3 uid="uid://cgd41f57pe75e"]
 
 [ext_resource type="PackedScene" uid="uid://b32jjq1m0sbq0" path="res://world/base_level.tscn" id="1_gqkg2"]
 [ext_resource type="PackedScene" uid="uid://s3nu2gmgjjr4" path="res://world/water/water.tscn" id="2_hcnav"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="8_xj28i"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="9_a4asr"]
 [ext_resource type="PackedScene" uid="uid://ccch1ntk44uml" path="res://world/spawn_point/spawn_point.tscn" id="10_mfg5c"]
+[ext_resource type="PackedScene" uid="uid://djxsrawdvaop" path="res://world/gate/gate.tscn" id="11_xx0b4"]
 
 [sub_resource type="Resource" id="Resource_kfed2"]
 script = ExtResource("4_s1rs2")
@@ -292,8 +293,8 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_rscvj"]
 script = ExtResource("5_xmnkk")
-position = Vector2(1856, 64)
-point_in = Vector2(-64, 0)
+position = Vector2(1888, 64)
+point_in = Vector2(0, 0)
 point_out = Vector2(64, 0)
 properties = SubResource("Resource_eoefd")
 
@@ -357,8 +358,8 @@ width = 1.0
 
 [sub_resource type="Resource" id="Resource_fhavy"]
 script = ExtResource("5_xmnkk")
-position = Vector2(1856, 64)
-point_in = Vector2(-64, 0)
+position = Vector2(1888, 64)
+point_in = Vector2(0, 0)
 point_out = Vector2(64, 0)
 properties = SubResource("Resource_arnx3")
 
@@ -492,6 +493,19 @@ point_in = Vector2(-256, 0)
 point_out = Vector2(320, 0)
 properties = SubResource("Resource_wdjme")
 
+[sub_resource type="Resource" id="Resource_65kmi"]
+script = ExtResource("4_s1rs2")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_iyyiw"]
+script = ExtResource("5_xmnkk")
+position = Vector2(1824, 64)
+point_in = Vector2(-64, 0)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_65kmi")
+
 [sub_resource type="Resource" id="Resource_pm7ib"]
 script = ExtResource("6_1phcn")
 _points = {
@@ -510,13 +524,14 @@ _points = {
 16: SubResource("Resource_puxxx"),
 17: SubResource("Resource_vbg4p"),
 19: SubResource("Resource_qrhpm"),
-20: SubResource("Resource_e21k4")
+20: SubResource("Resource_e21k4"),
+21: SubResource("Resource_iyyiw")
 }
-_point_order = PackedInt32Array(0, 1, 2, 3, 16, 19, 20, 9, 17, 15, 10, 8, 11, 14, 5, 7)
+_point_order = PackedInt32Array(0, 1, 2, 3, 16, 19, 20, 9, 17, 15, 10, 8, 11, 14, 5, 21, 7)
 _constraints = {
 Vector2i(0, 7): 15
 }
-_next_key = 21
+_next_key = 22
 _material_overrides = {}
 tessellation_stages = 3
 tessellation_tolerance = 6.0
@@ -599,11 +614,16 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4" index="1"]
 visible = false
 modulate = Color(1, 1, 1, 0.3)
-polygon = PackedVector2Array(1856, 64, 1868.75, 66.1562, 1883, 72.25, 1916, 94, 2000, 160, 2051, 195.25, 2108, 226, 2171, 247.75, 2204.75, 253.844, 2240, 256, 2816, 256, 2816, 704, -64, 1984, -576, 800, -128, 800, -20.625, 793.125, 65, 775, 134.125, 749.375, 295, 665, 350.625, 646.875, 381.766, 641.797, 416, 640, 432.422, 645.75, 434.875, 662, 425.141, 687.25, 405, 720, 256, 896, 0, 1152, 1088, 1152, 921, 899, 828.125, 723.375, 817.006, 690.221, 813.141, 664.297, 817.736, 647.068, 832, 640, 843.312, 641.438, 853.5, 645.5, 862.938, 651.812, 872, 660, 912, 704, 939.5, 727.5, 956.438, 738.312, 976, 748, 998.562, 756.188, 1024.5, 762.5, 1088, 768, 1208, 760, 1236.12, 752.375, 1248.36, 747.203, 1259, 741, 1267.77, 733.672, 1274.38, 725.125, 1278.55, 715.266, 1280, 704, 1277.81, 682.188, 1271.5, 664.5, 1261.44, 650.562, 1248, 640, 1231.56, 632.438, 1212.5, 627.5, 1168, 624, 960, 640, 941, 639, 922.875, 636.625, 904, 632, 895.453, 628.609, 888.125, 624.375, 882.484, 619.203, 879, 613, 878.141, 605.672, 880.375, 597.125, 886.172, 587.266, 896, 576, 1388, 361, 1664, 200, 1796, 99, 1830.5, 72.875, 1843.81, 66.2344)
+polygon = PackedVector2Array(1888, 64, 1900.39, 66.1562, 1913.62, 72.25, 1943, 94, 2016, 160, 2061.12, 195.25, 2113, 226, 2141.7, 238.281, 2172.38, 247.75, 2205.11, 253.844, 2240, 256, 2816, 256, 2816, 704, -64, 1984, -576, 800, -128, 800, -20.625, 793.125, 65, 775, 134.125, 749.375, 295, 665, 350.625, 646.875, 381.766, 641.797, 416, 640, 432.422, 645.75, 434.875, 662, 425.141, 687.25, 405, 720, 256, 896, 0, 1152, 1088, 1152, 921, 899, 828.125, 723.375, 817.006, 690.221, 813.141, 664.297, 817.736, 647.068, 832, 640, 843.312, 641.438, 853.5, 645.5, 862.938, 651.812, 872, 660, 912, 704, 939.5, 727.5, 956.438, 738.312, 976, 748, 998.562, 756.188, 1024.5, 762.5, 1088, 768, 1208, 760, 1236.12, 752.375, 1248.36, 747.203, 1259, 741, 1267.77, 733.672, 1274.38, 725.125, 1278.55, 715.266, 1280, 704, 1277.81, 682.188, 1271.5, 664.5, 1261.44, 650.562, 1248, 640, 1231.56, 632.438, 1212.5, 627.5, 1168, 624, 960, 640, 941, 639, 922.875, 636.625, 904, 632, 895.453, 628.609, 888.125, 624.375, 882.484, 619.203, 879, 613, 878.141, 605.672, 880.375, 597.125, 886.172, 587.266, 896, 576, 1383, 361, 1648, 200, 1769, 99, 1799.88, 72.875, 1812.17, 66.2344, 1824, 64)
 
 [node name="SpawnPoint" parent="." index="9" instance=ExtResource("10_mfg5c")]
-position = Vector2(1728, 64)
+position = Vector2(1856, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint" index="0"]
-position = Vector2(-1104, 384)
+position = Vector2(-1232, 416)
 shape = SubResource("RectangleShape2D_jd5ft")
+
+[node name="Gate" parent="." index="10" instance=ExtResource("11_xx0b4")]
+position = Vector2(-544, 800)
+level = "res://world/level_2.tscn"
+other_gate = &"Gate"

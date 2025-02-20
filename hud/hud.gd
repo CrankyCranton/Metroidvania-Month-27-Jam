@@ -5,7 +5,9 @@ extends CanvasLayer
 
 
 #region Functions
-func _init() -> void:
+func _ready() -> void:
+	set_max_health(PlayerData.max_health)
+	set_health(PlayerData.max_health)
 	PlayerData.health_changed.connect(set_health)
 	PlayerData.max_health_changed.connect(set_max_health)
 

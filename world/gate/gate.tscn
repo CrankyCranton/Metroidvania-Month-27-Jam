@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://djxsrawdvaop"]
+
+[ext_resource type="Script" path="res://world/gate/gate.gd" id="1_53ko5"]
+[ext_resource type="PackedScene" uid="uid://ccch1ntk44uml" path="res://world/spawn_point/spawn_point.tscn" id="1_ffy5s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypb07"]
+resource_local_to_scene = true
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8amk"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[node name="Gate" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_53ko5")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("1_ffy5s")]
+position = Vector2(32, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnPoint"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_ypb07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, -16)
+shape = SubResource("RectangleShape2D_a8amk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
