@@ -13,3 +13,10 @@ value = 50.0
 texture_under = ExtResource("1_2qlco")
 texture_progress = ExtResource("1_2qlco")
 tint_progress = Color(1, 0, 0, 1)
+
+[node name="TransformationsList" type="BoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+alignment = 1

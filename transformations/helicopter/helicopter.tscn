@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://jhmxejls61o4" path="res://transformations/base_vehicle.tscn" id="1_ay28f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nbbkm"]
+friction = 0.5
 bounce = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q2n2v"]
@@ -21,12 +22,13 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wdeea"]
 radius = 5.0
 
-[node name="Helicopter" instance=ExtResource("1_ay28f")]
+[node name="Helicopter" node_paths=PackedStringArray("water_detector") instance=ExtResource("1_ay28f")]
 physics_material_override = SubResource("PhysicsMaterial_nbbkm")
 gravity_scale = 0.3
 linear_damp = 1.5
 script = ExtResource("1_2lag7")
 speed = 4000
+water_detector = NodePath("Body/WaterDetector")
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_q2n2v")
@@ -52,11 +54,12 @@ shape = SubResource("CircleShape2D_6jnnx")
 shape = SubResource("RectangleShape2D_jycqr")
 disabled = true
 
-[node name="WaterDetector" type="Area2D" parent="." index="4"]
+[node name="WaterDetector" type="Area2D" parent="Body" index="2"]
+position = Vector2(0, -10)
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/WaterDetector" index="0"]
 position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_wdeea")

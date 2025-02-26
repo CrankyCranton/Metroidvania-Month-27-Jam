@@ -12,6 +12,7 @@ var level := 1
 
 #region Onready
 @onready var water_damage_timer: Timer = $WaterDamageTimer
+@onready var camera: Camera2D = $Camera
 #endregion
 #endregion
 
@@ -27,10 +28,25 @@ func _physics_process(_delta: float) -> void:
 #endregion
 
 
+#region Custom
 func connect_water_signals() -> void:
-	if water_damage_timer:
+	if water_detector:
 		water_detector.area_entered.connect(_on_water_detector_area_entered)
 		water_detector.area_exited.connect(_on_water_detector_area_exited)
+
+
+func change_vehicle(transformation: String) -> void:
+	var old_name := name
+	name = "_"
+	var vehicle: BaseVehicle = load(transformation).instantiate()
+	vehicle.name = old_name
+	vehicle.linear_velocity = linear_velocity
+	vehicle.angular_velocity = angular_velocity
+	vehicle.global_transform = global_transform
+	add_sibling.call_deferred(vehicle)
+	PlayerData.current_transformation = transformation
+	queue_free()
+#endregion
 
 
 #region Events

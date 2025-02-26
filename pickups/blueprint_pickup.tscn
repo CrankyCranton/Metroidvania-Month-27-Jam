@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://disk3mbhbew1d"]
+
+[ext_resource type="Texture2D" uid="uid://b3p7sxnt5fted" path="res://icon.svg" id="1_14wl3"]
+[ext_resource type="Script" path="res://pickups/blueprint_pickup.gd" id="1_binxt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljjps"]
+
+[node name="BlueprintPickup" type="Area2D"]
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_binxt")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_14wl3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ljjps")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

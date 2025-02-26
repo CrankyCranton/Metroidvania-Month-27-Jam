@@ -9,6 +9,8 @@ signal healed
 signal health_changed(health: int)
 signal max_health_changed(max_health: int)
 signal died
+signal transformation_obtained(transformation: String)
+signal transformed(transformation: String)
 #endregion
 
 #region Constants
@@ -19,7 +21,10 @@ const PASSWORD := "If you are reading this line of code, stop reading. It's not 
 
 #region Variables
 var transformations := {"res://transformations/armored_car/armored_car.tscn": 1}
-var current_transformation: String = transformations.keys().front()
+var current_transformation: String = transformations.keys().front():
+	set(value):
+		current_transformation = value
+		transformed.emit(current_transformation)
 var level := "res://world/level_1.tscn"
 var spawn_point := Vector2.INF
 var max_health: int:
@@ -36,6 +41,7 @@ var health: int:
 		health_changed.emit(health)
 		if health <= 0:
 			died.emit()
+var collected_buleprints := {}
 #endregion
 #endregion
 
@@ -46,11 +52,12 @@ func _ready() -> void:
 
 
 #region Custom
-#func load_level(path: String, spawn_point := "") -> void:
-	#level = path
-	#get_tree().change_scene_to_file(path)
-	#self.spawn_point = get_tree().current_scene.get_node(NodePath(spawn_point)).global_position
-	#save_data()
+func add_transformation(transformation: String) -> void:
+	if transformations.has(transformation):
+		transformations[transformation] += 1
+	else:
+		transformations[transformation] = 1
+	transformation_obtained.emit(transformation)
 
 
 @warning_ignore("shadowed_variable")
@@ -71,12 +78,13 @@ func save_data() -> void:
 
 	file.store_var(
 		{
-			"transformations": transformations, 
+			"transformations": transformations,
 			"current_transformation": current_transformation,
 			"level": level,
 			"spawn_point": spawn_point,
 			"max_health": max_health,
 			"health": health,
+			"collected_buleprints": collected_buleprints,
 		}
 	)
 	print("Save")
@@ -103,6 +111,7 @@ func load_data() -> Error:
 	spawn_point = data.spawn_point
 	max_health = data.max_health
 	health = data.health
+	collected_buleprints = data.collected_buleprints
 	print("Load")
 	return OK
 #endregion

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dvuq7ydlxtn7x"]
+[gd_scene load_steps=24 format=3 uid="uid://dvuq7ydlxtn7x"]
 
 [ext_resource type="PackedScene" uid="uid://b32jjq1m0sbq0" path="res://world/base_level.tscn" id="1_n06kw"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="2_kub23"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_mrpyp"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="7_b724b"]
 [ext_resource type="PackedScene" uid="uid://djxsrawdvaop" path="res://world/gate/gate.tscn" id="8_wljrt"]
+[ext_resource type="PackedScene" uid="uid://disk3mbhbew1d" path="res://pickups/blueprint_pickup.tscn" id="9_wftqb"]
 
-[sub_resource type="Resource" id="Resource_j6udw"]
+[sub_resource type="Resource" id="Resource_8cmnn"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -20,9 +21,9 @@ script = ExtResource("4_0ogdk")
 position = Vector2(-544, 96)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_j6udw")
+properties = SubResource("Resource_8cmnn")
 
-[sub_resource type="Resource" id="Resource_x8ypn"]
+[sub_resource type="Resource" id="Resource_ri4nu"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -33,9 +34,9 @@ script = ExtResource("4_0ogdk")
 position = Vector2(992, 96)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_x8ypn")
+properties = SubResource("Resource_ri4nu")
 
-[sub_resource type="Resource" id="Resource_00mvc"]
+[sub_resource type="Resource" id="Resource_jamtr"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -46,9 +47,9 @@ script = ExtResource("4_0ogdk")
 position = Vector2(544, 1248)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_00mvc")
+properties = SubResource("Resource_jamtr")
 
-[sub_resource type="Resource" id="Resource_6wlal"]
+[sub_resource type="Resource" id="Resource_7q2ll"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -59,9 +60,9 @@ script = ExtResource("4_0ogdk")
 position = Vector2(-928, 1056)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_6wlal")
+properties = SubResource("Resource_7q2ll")
 
-[sub_resource type="Resource" id="Resource_rfac2"]
+[sub_resource type="Resource" id="Resource_v076y"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -72,9 +73,9 @@ script = ExtResource("4_0ogdk")
 position = Vector2(-544, 96)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_rfac2")
+properties = SubResource("Resource_v076y")
 
-[sub_resource type="Resource" id="Resource_u11vn"]
+[sub_resource type="Resource" id="Resource_xi50o"]
 script = ExtResource("3_ylfgp")
 texture_idx = 0
 flip = false
@@ -85,7 +86,7 @@ script = ExtResource("4_0ogdk")
 position = Vector2(-1152, 224)
 point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
-properties = SubResource("Resource_u11vn")
+properties = SubResource("Resource_xi50o")
 
 [sub_resource type="Resource" id="Resource_nre6d"]
 script = ExtResource("5_cjp4g")
@@ -139,3 +140,7 @@ polygon = PackedVector2Array(-544, 96, 992, 96, 544, 1248, -928, 1056, -1152, 22
 position = Vector2(-493, 94)
 level = "res://world/level_1.tscn"
 other_gate = &"Gate"
+
+[node name="BlueprintPickup2" parent="." index="4" instance=ExtResource("9_wftqb")]
+position = Vector2(-862, 153)
+transformation = "res://transformations/submarine/submarine.tscn"

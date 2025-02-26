@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d33512xc4uywy"]
+
+[ext_resource type="Script" path="res://hud/transformation_button.gd" id="1_vgqnq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tymqe"]
+
+[node name="TransformationButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tymqe")
+toggle_mode = true
+script = ExtResource("1_vgqnq")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
